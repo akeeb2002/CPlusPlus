@@ -1,0 +1,123 @@
+#include <iostream>
+#include <cstdlib>
+#include <string>
+using namespace std;
+
+class Student
+{
+public:
+	// Constructors
+	Student();
+	Student(string firstName, string lastName, int credits, double gpa, string birthDate, string matDate);
+	// accessors
+	string getLastName();
+	string getFirstName();
+	string getStanding();
+	string getBirthDate();
+	string getMatDate();
+	int getCredits();
+	double getGPA();
+	//Mutators
+	void setLastName(string);
+	void setFirstName(string);
+	void setBirthDate(string);
+	void setMatDate(string);
+	void setCredits(int);
+	void setGPA(double);
+	//Input Functions
+	void input();
+	void output();
+	//Default Variables
+private:
+	string lastName;
+	string firstName;
+	int credits;
+	double gpa;
+	string bDay;
+	string mDate;
+	string standing;
+
+	void setStanding(int);
+};
+
+Student::Student() : lastName("DeafultName"), firstName("DefaultFirst"), standing("Lower Freshman"), credits(0), gpa(0.0), bDay("02/03/1992"), mDate("04/01/2023") {};
+
+
+string Student::getLastName(){return lastName;}
+string Student::getFirstName(){return firstName;}
+string Student::getStanding(){return standing;}
+string Student::getBirthDate(){return bDay;}
+string Student::getMatDate(){return mDate;}
+int Student::getCredits(){return credits;}
+double Student::getGPA(){return gpa;}
+void Student::setLastName(string lastname){lastName = lastname;}
+void Student::setFirstName(string firstname){firstName = firstname;}
+void Student::setBirthDate(string birthday){bDay = birthday;}
+void Student::setMatDate(string matdate){mDate = matdate;}
+void Student::setCredits(int creds){int credits = creds;}
+void Student::setGPA(double gPa){gpa = gPa;}
+
+void Student::input()
+{
+	cout << "Enter Last name: ";
+	cin >> lastName;
+	cout << "Enter First name: ";
+	cin >> firstName;
+	cout << "Enter your birthday(mm/dd/yyyy): ";
+	cin >> bDay;
+	cout << "Enter matriculation date(mm/dd/yyyy): ";
+	cin >> mDate;
+	cout << "Enter GPA: ";
+	cin >> gpa;
+	cout << "Enter the number of credits you accumilated: ";
+	cin >> credits;
+	cout << "Enter Last name: ";
+
+	setStanding(credits);
+}
+
+void Student::output()
+{
+	cout << "Full name: " << getFirstName() << " " << getLastName() << endl
+		<< "Credits: " << getCredits() << endl
+		<< "Date of Brith " << getBirthDate() << endl
+		<< "Matriculation Date: " << getMatDate() << endl
+		<< "GPA: " << getGPA() << endl
+		<< "And your standing is : " << getStanding() << endl;
+}
+
+void Student::setStanding(int)
+{
+	if (credits < 15)
+		standing = "Lower Freshmen";
+	else if (credits < 30)
+		standing = "Upper Freshmen";
+	else if (credits < 45)
+		standing = "Lower Sophmore";
+	else if (credits < 60)
+		standing = "Upper Sophmore";
+	else if (credits < 75)
+		standing = "Lower Junior";
+	else if (credits < 90)
+		standing = "Upper Junior";
+	else if (credits < 105)
+		standing = "Lower Senior";
+	else if (credits > 105)
+		standing = "Upper Senior";
+	else
+		cout << "No standing detected";
+}
+
+Student::Student(string firstName, string lastName, int credits, double gpa, string birthDate, string matDate) : firstName(firstName), lastName(lastName), credits(credits), gpa(gpa), bDay(birthDate), mDate(matDate) { setStanding(credits); };
+
+
+int main() {
+  Student s1;
+  cout << "Enter the following information " << endl;
+  s1.input();
+
+  cout << "Here is your output" << endl;
+  s1.output();
+  
+  return 0;
+}
