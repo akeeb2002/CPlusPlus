@@ -1,3 +1,5 @@
+//feel free to take a look at the other files in Cplusplus so see the other versions of this project and my other C++ projects
+
 #include <iostream>
 #include <cmath>
 using namespace std;
